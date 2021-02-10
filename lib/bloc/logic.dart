@@ -1,28 +1,32 @@
+import 'package:github_search/models/repo.dart';
 import 'events.dart';
 import 'states.dart';
-import 'package:github_search/models/repo.dart';
-import 'package:bloc_network_example/services/user_repository.dart';
+import 'package:github_search/bloc/services/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
-  final UsersRepository usersRepository;
-  UserBloc({this.usersRepository}) : assert(usersRepository != null);
+class AppBloc extends Bloc<AppEvents, AppStates> {
+  final GlobalKey<NavigatorState> navigatorKey;
+  final AppRepository appRepo;
+  AppBloc({
+    this.appRepo,
+    this.navigatorKey,
+  })  : assert(appRepo != null),
+        super(null);
 
   @override
-  UserState get initialState => UserEmptyState();
-
-  @override
-  Stream<UserState> mapEventToState(UserEvent event) async* {
-    if (event is UserLoadEvent) {
-      yield UserLoadingState();
+  Stream<AppStates> mapEventToState(AppEvents event) async* {
+    if (event is RepoSearchEvent) {
+      yield RepoLoadingState();
       try {
-        final List<User> _loadedUserList = await usersRepository.getAllUsers();
-        yield UserLoadedState(loadedUser: _loadedUserList);
+        final List<Repo> _loadedData = await appRepo.getRepos();
+        print("data loaded");
+        navigatorKey.currentState.pushNamed('/results');
+        yield RepoLoadedState(repos: _loadedData);
       } catch (_) {
-        yield UserErrorState();
+        print("error: ${_.toString()}");
+        yield RepoErrorState();
       }
-    } else if (event is UserClearEvent) {
-      yield UserEmptyState();
     }
   }
 }

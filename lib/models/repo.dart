@@ -1,7 +1,7 @@
 class Repo {
   String name;
   String userName;
-  String rate;
+  int rate;
   String dt;
   String avaURL;
 
@@ -14,6 +14,7 @@ class Repo {
   });
 
   factory Repo.fromJSON(Map<String, dynamic> json) {
+    // print(json);
     return Repo(
       name: json['name'],
       userName: json['owner']['login'],

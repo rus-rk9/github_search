@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:github_search/bloc/events.dart';
+
 import 'package:github_search/screens/widgets/my_button.dart';
+import 'package:github_search/screens/widgets/my_loading_circle.dart';
 import 'widgets/my_app_bar.dart';
 import 'widgets/my_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_search/bloc/logic.dart';
 
 const Map<String, Color> MyColor = {
   'grey': Color(0xFFDFDFDF),
@@ -19,7 +24,6 @@ class Search extends StatelessWidget {
       ),
       body: MyBody(),
     );
-    // );
   }
 }
 
@@ -29,7 +33,10 @@ class MyBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 85),
+        Container(
+          height: 85,
+          child: MyLoadingCircle(),
+        ),
         Container(
           height: 50,
           margin: EdgeInsets.all(16),
@@ -62,7 +69,14 @@ class MyBody extends StatelessWidget {
               MyButton(
                 caption: 'найти',
                 blueColor: MyColor['blue'],
-                onPressed: null,
+                onPressed: () {
+                  BlocProvider.of<AppBloc>(context).add(RepoSearchEvent());
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Results()),
+                  // );
+                },
               ),
             ],
           ),
