@@ -7,10 +7,11 @@ class MyCard extends Container {
   MyCard({
     @required String repCaption,
     @required String username,
-    @required String when,
+    @required String avatar,
     @required Color borderColor,
     @required Color backgroundColor,
     @required int rate,
+    @required String date,
   }) : super(
           height: 111,
           margin: EdgeInsets.only(left: 16, right: 16, bottom: 16),
@@ -33,6 +34,7 @@ class MyCard extends Container {
                   MyCardCaption(
                     repCaption: repCaption,
                     username: username,
+                    ava: avatar,
                   ),
                   Column(
                     children: [
@@ -51,7 +53,7 @@ class MyCard extends Container {
               Container(
                 padding: EdgeInsets.only(top: 12),
                 child: MyStatus(
-                  when: '3 января',
+                  when: date,
                   greyColor: backgroundColor,
                 ),
               ),

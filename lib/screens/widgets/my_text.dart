@@ -5,7 +5,7 @@ class MyText extends Text {
     @required String text,
     @required Color color,
   }) : super(
-          text.toUpperCase(),
+          text,
           style: TextStyle(
             color: color,
             fontSize: 10,

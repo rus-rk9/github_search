@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   http: ^0.12.2
   flutter_bloc: ^6.1.1
+  intl: ^0.16.1
+  devicelocale: ^0.3.3
 
 dev_dependencies:
   flutter_test:

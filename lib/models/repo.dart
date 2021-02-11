@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Repo {
   String name;
   String userName;
@@ -13,13 +15,13 @@ class Repo {
     this.avaURL,
   });
 
-  factory Repo.fromJSON(Map<String, dynamic> json) {
-    // print(json);
+  factory Repo.fromJSON(Map<String, dynamic> json, String languageCode) {
+    DateTime d = DateTime.parse(json['updated_at']);
     return Repo(
       name: json['name'],
       userName: json['owner']['login'],
       rate: json['stargazers_count'],
-      dt: json['updated_at'], //"2021-02-03T14:13:28Z"
+      dt: DateFormat('d MMMM', languageCode).format(d), //"2021-02-03T14:13:28Z"
       avaURL: json['owner']['avatar_url'],
     );
   }

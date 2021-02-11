@@ -10,9 +10,11 @@ class RepoEmptyState extends AppStates {}
 class RepoLoadingState extends AppStates {}
 
 class RepoLoadedState extends AppStates {
+  String searchValue;
   List<Repo> repos;
 
   RepoLoadedState({
+    @required this.searchValue,
     @required this.repos,
   }) : assert(repos != null);
 }

@@ -4,6 +4,7 @@ class MyCardCaption extends Column {
   MyCardCaption({
     @required String repCaption,
     @required String username,
+    @required String ava,
   }) : super(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,6 +25,10 @@ class MyCardCaption extends Column {
                   decoration: BoxDecoration(
                     color: Colors.grey,
                     shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(ava),
+                    ),
                   ),
                 ),
                 Text(

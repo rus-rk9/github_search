@@ -5,7 +5,7 @@ class MyRate extends Container {
     @required int val,
     @required Color backgroundColor,
   }) : super(
-          width: 45,
+          // width: 45,
           height: 24,
           padding: EdgeInsets.only(left: 7, right: 7),
           decoration: BoxDecoration(

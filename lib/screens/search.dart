@@ -8,11 +8,6 @@ import 'widgets/my_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/bloc/logic.dart';
 
-const Map<String, Color> MyColor = {
-  'grey': Color(0xFFDFDFDF),
-  'blue': Color(0xFF58AFFF),
-};
-
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +15,7 @@ class Search extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: MyAppBar(
         appBarCaption: 'ПОИСК',
-        greyColor: MyColor['grey'],
+        greyColor: BlocProvider.of<AppBloc>(context).myColor['grey'],
       ),
       body: MyBody(),
     );
@@ -28,8 +23,11 @@ class Search extends StatelessWidget {
 }
 
 class MyBody extends StatelessWidget {
+  final TextEditingController searchTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final Map<String, Color> myColor =
+        BlocProvider.of<AppBloc>(context).myColor;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -40,10 +38,11 @@ class MyBody extends StatelessWidget {
         Container(
           height: 50,
           margin: EdgeInsets.all(16),
+          padding: EdgeInsets.only(left: 16),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
-              color: MyColor['grey'],
+              color: myColor['grey'],
               style: BorderStyle.solid,
               width: 1,
             ),
@@ -56,6 +55,8 @@ class MyBody extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(8),
                   child: TextField(
+                    maxLines: 1,
+                    controller: searchTextController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -66,17 +67,19 @@ class MyBody extends StatelessWidget {
                   ),
                 ),
               ),
-              MyButton(
-                caption: 'найти',
-                blueColor: MyColor['blue'],
-                onPressed: () {
-                  BlocProvider.of<AppBloc>(context).add(RepoSearchEvent());
-
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => Results()),
-                  // );
-                },
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: MyButton(
+                  caption: 'найти',
+                  blueColor: myColor['blue'],
+                  onPressed: () {
+                    BlocProvider.of<AppBloc>(context).add(
+                      RepoSearchEvent(
+                        searchValue: searchTextController.text.trim(),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
