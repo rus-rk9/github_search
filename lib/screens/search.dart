@@ -1,3 +1,4 @@
+///экран поиска
 import 'package:flutter/material.dart';
 import 'package:github_search/bloc/events.dart';
 
@@ -67,6 +68,8 @@ class MyBody extends StatelessWidget {
                   ),
                 ),
               ),
+
+              ///чтобы анимация нажатия не выходила за рамки
               ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: MyButton(

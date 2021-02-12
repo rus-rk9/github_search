@@ -1,3 +1,4 @@
+///виджет рейта в карточке
 import 'package:flutter/material.dart';
 
 class MyRate extends Container {

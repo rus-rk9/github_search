@@ -1,3 +1,4 @@
+///статус в карточке
 import 'package:flutter/material.dart';
 
 class MyStatus extends Row {

@@ -1,3 +1,4 @@
+///текст в экранах
 import 'package:flutter/material.dart';
 
 class MyText extends Text {

@@ -1,3 +1,4 @@
+///модель карточки
 import 'package:intl/intl.dart';
 
 class Repo {
@@ -15,6 +16,7 @@ class Repo {
     this.avaURL,
   });
 
+  ///преобразование результата в объект модели
   factory Repo.fromJSON(Map<String, dynamic> json, String languageCode) {
     DateTime d = DateTime.parse(json['updated_at']);
     return Repo(

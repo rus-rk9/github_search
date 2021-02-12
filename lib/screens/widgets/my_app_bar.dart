@@ -1,3 +1,4 @@
+///апликейшн бар приложения
 import 'package:flutter/material.dart';
 
 class MyAppBar extends PreferredSize {

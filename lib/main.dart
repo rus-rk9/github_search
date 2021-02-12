@@ -10,16 +10,19 @@ void main() {
 }
 
 class SearchApp extends StatelessWidget {
+  ///навигатор
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
+    ///инициализация интерфейса форматирования дат
     initializeDateFormatting();
     return BlocProvider<AppBloc>(
       create: (context) => AppBloc(
         navigatorKey: _navigatorKey,
       ),
       child: MaterialApp(
+        ///без указания этого ключа навигация работать не будет
         navigatorKey: _navigatorKey,
         initialRoute: '/',
         routes: {

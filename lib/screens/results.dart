@@ -1,3 +1,4 @@
+///экран результатов
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/bloc/logic.dart';
@@ -31,7 +32,6 @@ class MyBody extends StatelessWidget {
         if (state is RepoLoadedState) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(height: 20),
               Row(

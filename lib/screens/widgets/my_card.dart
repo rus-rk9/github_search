@@ -1,3 +1,4 @@
+///карточка
 import 'package:flutter/material.dart';
 import 'package:github_search/screens/widgets/my_card_caption.dart';
 import 'my_rate.dart';

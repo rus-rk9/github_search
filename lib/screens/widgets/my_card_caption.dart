@@ -1,3 +1,4 @@
+///заголовок карточки
 import 'package:flutter/material.dart';
 
 class MyCardCaption extends Column {
